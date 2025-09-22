@@ -1,138 +1,129 @@
-<<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Intel: Sustainability Through the Ages</title>
-    <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Intel: Sustainability Through the Ages</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <header>
+    <div class="header-top">
+      <img src="img/intel-header-logo.svg" alt="Intel Logo" />
+      <button id="langToggle" aria-label="Toggle language">عربي</button>
+    </div>
+    <h1 id="pageTitle">Sustainability Through the Ages</h1>
+    <p id="pageDesc">
+      Explore Intel's journey through time, discovering how our commitment to innovation has shaped a more sustainable future for technology and our planet.
+    </p>
+  </header>
 
-    <header>
-        <div>
-            <img src="img/intel-header-logo.svg" alt="Intel Logo" />
-            <h1> Sustainability Through the Ages </h1>
-            <p>
-                Explore Intel's journey through time, discovering how our commitment to innovation has shaped a more sustainable future for technology and our planet.
-            </p>
-        </div>
-    </header>
+  <main>
+    <section class="timeline" id="timeline"></section>
 
-    <section class="carousel-container">
-        <button id="prevBtn" class="nav-btn">←</button>
-        <div class="carousel">
-            </div>
-        <button id="nextBtn" class="nav-btn">→</button>
+    <section class="newsletter">
+      <h2 id="newsletterTitle">Subscribe to Our Sustainability Newsletter</h2>
+      <form aria-label="Newsletter subscription form">
+        <label for="email" id="emailLabel">Email address:</label>
+        <input type="email" id="email" name="email" required aria-required="true" />
+        <button type="submit" id="subscribeBtn">Subscribe</button>
+      </form>
     </section>
+  </main>
 
-    <script>
-        // Datos de las tarjetas, incluyendo la ruta de las imágenes
-        const timelineData = [
-            {
-                year: "1968",
-                title: "Intel Founded",
-                description: "Robert Noyce and Gordon Moore rename the newly formed company NM Electronics to Intel Corporation, laying the foundation for decades of technological innovation.",
-                image: "img/1.jpg" 
-            },
-            {
-                year: "1971",
-                title: "First Microprocessor",
-                description: "Intel debuts the 4004, the world's first commercial microprocessor, igniting the microprocessor revolution and propelling the future of computing devices.",
-                image: "img/2.jpg" // Reemplaza con la ruta de tu imagen
-            },
-            {
-                year: "1978",
-                title: "8086 Processor",
-                description: "Launch of the 8086 processor, establishing the x86 architecture that drives countless PCs and servers in the modern era.",
-                image: "img/3.jpg" // Reemplaza con la ruta de tu imagen
-            },
-            {
-                year: "1985",
-                title: "386 Processor",
-                description: "Intel introduces the 386 processor with 32-bit architecture, ushering in a new era of performance and multitasking for personal computers.",
-                image: "img/4.jpg" // Reemplaza con la ruta de tu imagen
-            },
-            {
-                year: "2006",
-                title: "Peak GHG Emissions",
-                description: "This year marks Intel's highest annual greenhouse gas emissions for operations. Over subsequent years, Intel invests heavily in chemical abatement, renewable energy, and energy-efficient manufacturing to reverse this trend.",
-                image: "img/5.png" // Reemplaza con la ruta de tu imagen
-            },
-            {
-                year: "2020",
-                title: "RISE Strategy",
-                description: "Intel launches its RISE (Responsible, Inclusive, Sustainable, Enabling) strategy and 2030 goals, aiming to drive industry-wide progress on climate action, water stewardship, and waste reduction.",
-                image: "img/6.jpg" // Reemplaza con la ruta de tu imagen
-            },
-            {
-                year: "2022",
-                title: "Net-Zero By 2040",
-                description: "Intel announces its commitment to achieve net-zero greenhouse gas emissions (Scope 1 and 2) across its global operations by 2040, building on years of environmental initiatives.",
-                image: "img/7.jpg" // Reemplaza con la ruta de tu imagen
-            },
-            {
-                year: "2023",
-                title: "Renewable Electricity",
-                description: "The company achieves 99% renewable electricity usage worldwide, helping to drastically lower carbon emissions and driving progress toward Intel's long-term sustainability goals.",
-                image: "img/8.avif" // Reemplaza con la ruta de tu imagen
-            },
-            {
-                year: "2024",
-                title: "Sustainability Summit",
-                description: "Intel hosts its first Sustainability Summit, uniting suppliers, government officials, and industry leaders to collaborate on next-generation sustainable semiconductor manufacturing.",
-                image: "img/9.jpeg" // Reemplaza con la ruta de tu imagen
-            },
-        ];
+  <script>
+    const timelineDataEN = [
+      {year: "1968", title: "Intel Founded", desc: "Robert Noyce and Gordon Moore rename NM Electronics to Intel Corporation, laying the foundation for decades of innovation.", image: "img/1.jpg"},
+      {year: "1971", title: "First Microprocessor", desc: "Intel debuts the 4004, the world's first commercial microprocessor, igniting the revolution in computing.", image: "img/2.jpg"},
+      {year: "1978", title: "8086 Processor", desc: "Launch of the 8086 processor, establishing the x86 architecture powering countless PCs and servers.", image: "img/3.jpg"},
+      {year: "1985", title: "386 Processor", desc: "Intel introduces the 386 processor with 32-bit architecture, ushering in a new era of performance.", image: "img/4.jpg"},
+      {year: "2006", title: "Peak GHG Emissions", desc: "Intel’s highest annual greenhouse gas emissions, followed by major investments in energy efficiency.", image: "img/5.png"},
+      {year: "2020", title: "RISE Strategy", desc: "Intel launches its RISE strategy, driving industry-wide climate action and sustainability goals.", image: "img/6.jpg"},
+      {year: "2022", title: "Net-Zero by 2040", desc: "Intel commits to achieving net-zero greenhouse gas emissions in global operations by 2040.", image: "img/7.jpg"},
+      {year: "2023", title: "Renewable Electricity", desc: "Intel achieves 99% renewable electricity usage worldwide, drastically lowering carbon emissions.", image: "img/8.avif"},
+      {year: "2024", title: "Sustainability Summit", desc: "Intel hosts its first Sustainability Summit, uniting global leaders in sustainable manufacturing.", image: "img/9.jpeg"},
+    ];
 
-        let currentIndex = 0;
-        const carousel = document.querySelector(".carousel");
-        const prevBtn = document.getElementById("prevBtn");
-        const nextBtn = document.getElementById("nextBtn");
+    const timelineDataAR = [
+      {year: "1968", title: "تأسيس إنتل", desc: "أعاد روبرت نويس وغوردون مور تسمية شركة NM Electronics إلى Intel Corporation، مما مهد لعقود من الابتكار.", image: "img/1.jpg"},
+      {year: "1971", title: "أول معالج دقيق", desc: "قدمت إنتل 4004، أول معالج دقيق تجاري في العالم، مما أشعل ثورة الحوسبة.", image: "img/2.jpg"},
+      {year: "1978", title: "معالج 8086", desc: "إطلاق معالج 8086 الذي أسس معمارية x86 التي تشغّل أجهزة الكمبيوتر والخوادم.", image: "img/3.jpg"},
+      {year: "1985", title: "معالج 386", desc: "قدمت إنتل معالج 386 بمعمارية 32-بت، مما فتح عصرًا جديدًا من الأداء المتعدد.", image: "img/4.jpg"},
+      {year: "2006", title: "ذروة انبعاثات غازات الدفيئة", desc: "أعلى عام لانبعاثات الغازات لشركة إنتل، تبعه استثمارات ضخمة في الكفاءة الطاقية.", image: "img/5.png"},
+      {year: "2020", title: "استراتيجية RISE", desc: "أطلقت إنتل استراتيجيتها RISE، لتعزيز العمل المناخي العالمي وأهداف الاستدامة.", image: "img/6.jpg"},
+      {year: "2022", title: "صافي صفر بحلول 2040", desc: "تتعهد إنتل بالوصول إلى صافي انبعاثات صفرية بحلول 2040 في عملياتها العالمية.", image: "img/7.jpg"},
+      {year: "2023", title: "كهرباء متجددة", desc: "حققت إنتل نسبة 99٪ من استخدام الكهرباء المتجددة عالميًا، مما قلل الانبعاثات بشكل كبير.", image: "img/8.avif"},
+      {year: "2024", title: "قمة الاستدامة", desc: "عقدت إنتل أول قمة للاستدامة، جمعت القادة العالميين في التصنيع المستدام.", image: "img/9.jpeg"},
+    ];
 
-        // Función para generar las tarjetas dinámicamente
-        function createCards() {
-            carousel.innerHTML = "";
-            timelineData.forEach((item, index) => {
-                const card = document.createElement("div");
-                card.classList.add("card");
-                if (index === currentIndex) {
-                    card.classList.add("active");
-                }
-                card.innerHTML = `
-                    <h2>${item.year}</h2>
-                    <h3>${item.title}</h3>
-                    <img src="${item.image}" alt="${item.title}">
-                    <p>${item.description}</p>
-                `;
-                carousel.appendChild(card);
-            });
-        }
+    const elementsEN = {
+      pageTitle: "Sustainability Through the Ages",
+      pageDesc: "Explore Intel's journey through time, discovering how our commitment to innovation has shaped a more sustainable future for technology and our planet.",
+      newsletterTitle: "Subscribe to Our Sustainability Newsletter",
+      emailLabel: "Email address:",
+      subscribeBtn: "Subscribe",
+      toggle: "عربي"
+    };
 
-        // Función para mostrar la tarjeta actual
-        function showCurrentCard() {
-            const cards = document.querySelectorAll(".card");
-            cards.forEach((card, index) => {
-                card.classList.remove("active");
-                if (index === currentIndex) {
-                    card.classList.add("active");
-                }
-            });
-        }
+    const elementsAR = {
+      pageTitle: "الاستدامة عبر العصور",
+      pageDesc: "استكشف رحلة إنتل عبر الزمن، واكتشف كيف ساهم التزامنا بالابتكار في تشكيل مستقبل أكثر استدامة للتكنولوجيا وكوكبنا.",
+      newsletterTitle: "اشترك في نشرتنا الإخبارية للاستدامة",
+      emailLabel: "البريد الإلكتروني:",
+      subscribeBtn: "اشترك",
+      toggle: "English"
+    };
 
-        // Evento para el botón de Siguiente
-        nextBtn.addEventListener("click", () => {
-            currentIndex = (currentIndex + 1) % timelineData.length;
-            showCurrentCard();
-        });
+    let currentLang = "en";
 
-        // Evento para el botón de Anterior
-        prevBtn.addEventListener("click", () => {
-            currentIndex = (currentIndex - 1 + timelineData.length) % timelineData.length;
-            showCurrentCard();
-        });
+    function renderTimeline(data) {
+      const timeline = document.getElementById("timeline");
+      timeline.innerHTML = "";
+      data.forEach(item => {
+        const card = document.createElement("div");
+        card.classList.add("card");
+        card.innerHTML = `
+          <h2>${item.year}</h2>
+          <h3>${item.title}</h3>
+          <img src="${item.image}" alt="${item.title}" />
+          <p>${item.desc}</p>
+        `;
+        timeline.appendChild(card);
+      });
+    }
 
-        // Llama a la función para crear y mostrar las tarjetas al cargar la página
-        createCards();
-    </script>
+    function setLanguage(lang) {
+      if (lang === "ar") {
+        document.documentElement.lang = "ar";
+        document.documentElement.dir = "rtl";
+        document.getElementById("pageTitle").textContent = elementsAR.pageTitle;
+        document.getElementById("pageDesc").textContent = elementsAR.pageDesc;
+        document.getElementById("newsletterTitle").textContent = elementsAR.newsletterTitle;
+        document.getElementById("emailLabel").textContent = elementsAR.emailLabel;
+        document.getElementById("subscribeBtn").textContent = elementsAR.subscribeBtn;
+        document.getElementById("langToggle").textContent = elementsAR.toggle;
+        renderTimeline(timelineDataAR);
+        currentLang = "ar";
+      } else {
+        document.documentElement.lang = "en";
+        document.documentElement.dir = "ltr";
+        document.getElementById("pageTitle").textContent = elementsEN.pageTitle;
+        document.getElementById("pageDesc").textContent = elementsEN.pageDesc;
+        document.getElementById("newsletterTitle").textContent = elementsEN.newsletterTitle;
+        document.getElementById("emailLabel").textContent = elementsEN.emailLabel;
+        document.getElementById("subscribeBtn").textContent = elementsEN.subscribeBtn;
+        document.getElementById("langToggle").textContent = elementsEN.toggle;
+        renderTimeline(timelineDataEN);
+        currentLang = "en";
+      }
+    }
+
+    document.getElementById("langToggle").addEventListener("click", () => {
+      setLanguage(currentLang === "en" ? "ar" : "en");
+    });
+
+    // Initial render
+    setLanguage("en");
+  </script>
 </body>
 </html>

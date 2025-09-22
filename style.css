@@ -1,136 +1,145 @@
-ody {
-    font-family: Arial, sans-serif;
-    background-color: #f0f2f5;
-    color: #333;
-    margin: 0;
-    padding: 0;
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f2f5;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
 }
 
 header {
-    text-align: center;
-    padding: 2rem 1rem;
-    background-color: #0071c5;
-    color: white;
+  text-align: center;
+  padding: 2rem 1rem;
+  background-color: #0071c5;
+  color: white;
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 header img {
-    height: 50px; /* Ajusta el tamaño del logo */
-    margin-bottom: 1rem;
+  height: 50px;
 }
 
-h1 {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
+#langToggle {
+  background: white;
+  color: #0071c5;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
 }
 
-p {
-    font-size: 1.1rem;
+#langToggle:hover {
+  background: #e5e5e5;
 }
 
-/* Estilos del carrusel */
-.carousel-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem 1rem;
-    position: relative; /* Para posicionar las flechas */
-    max-width: 1200px;
-    margin: auto;
-}
-
-.carousel {
-    display: flex;
-    overflow: hidden; /* Oculta los cards que no están activos */
-    width: 100%;
-    position: relative;
-    height: 550px; /* Altura fija para evitar saltos de diseño */
-    align-items: center;
+/* Timeline grid */
+.timeline {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 2rem;
 }
 
 .card {
-    min-width: 100%; /* Cada card ocupa el 100% del ancho del carrusel */
-    max-width: 100%;
-    box-sizing: border-box;
-    padding: 2rem;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    transition: transform 0.5s ease-in-out;
-    display: none; /* Inicialmente ocultos, JavaScript los mostrará */
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  flex: 1 1 calc(33% - 2rem);
+  max-width: 350px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  padding: 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.card.active {
-    display: flex; /* Muestra solo el card activo */
+.card:hover,
+.card:focus {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
 
 .card h2 {
-    font-size: 2rem;
-    color: #0071c5;
+  font-size: 1.5rem;
+  color: #0071c5;
 }
 
 .card h3 {
-    font-size: 1.5rem;
-    color: #555;
-    margin-top: 0;
+  font-size: 1.2rem;
+  color: #555;
+  margin: 0.5rem 0;
 }
 
 .card img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin: 1rem 0;
-    max-height: 250px; /* Limita el tamaño de las imágenes */
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 1rem 0;
+  max-height: 200px;
 }
 
-/* Estilos de los botones de navegación */
-.nav-btn {
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    padding: 1rem;
-    cursor: pointer;
-    font-size: 2rem;
-    z-index: 10;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute; /* Posicionamiento absoluto para que estén a los lados */
-    top: 50%;
-    transform: translateY(-50%);
-    user-select: none;
-    transition: background-color 0.3s ease;
+.card p {
+  opacity: 0;
+  transition: opacity 0.5s ease;
 }
 
-#prevBtn {
-    left: 20px;
+.card:hover p,
+.card:focus p {
+  opacity: 1;
 }
 
-#nextBtn {
-    right: 20px;
+/* Newsletter */
+.newsletter {
+  text-align: center;
+  padding: 2rem;
+  background-color: #e9f2fb;
 }
 
-.nav-btn:hover {
-    background: rgba(0, 0, 0, 0.7);
+.newsletter form {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-@media (max-width: 768px) {
-    .nav-btn {
-        width: 40px;
-        height: 40px;
-        font-size: 1.5rem;
-    }
+.newsletter input[type="email"] {
+  padding: 0.5rem;
+  width: 250px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
 
-    #prevBtn {
-        left: 5px;
-    }
-    #nextBtn {
-        right: 5px;
-    }
+.newsletter button {
+  background: #0071c5;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.newsletter button:hover {
+  background: #005fa3;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .card {
+    flex: 1 1 calc(50% - 1rem);
+  }
+}
+
+@media (max-width: 600px) {
+  .card {
+    flex: 1 1 100%;
+  }
 }
