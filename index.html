@@ -1,0 +1,138 @@
+<<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Intel: Sustainability Through the Ages</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+    <header>
+        <div>
+            <img src="img/intel-header-logo.svg" alt="Intel Logo" />
+            <h1> Sustainability Through the Ages </h1>
+            <p>
+                Explore Intel's journey through time, discovering how our commitment to innovation has shaped a more sustainable future for technology and our planet.
+            </p>
+        </div>
+    </header>
+
+    <section class="carousel-container">
+        <button id="prevBtn" class="nav-btn">←</button>
+        <div class="carousel">
+            </div>
+        <button id="nextBtn" class="nav-btn">→</button>
+    </section>
+
+    <script>
+        // Datos de las tarjetas, incluyendo la ruta de las imágenes
+        const timelineData = [
+            {
+                year: "1968",
+                title: "Intel Founded",
+                description: "Robert Noyce and Gordon Moore rename the newly formed company NM Electronics to Intel Corporation, laying the foundation for decades of technological innovation.",
+                image: "img/1.jpg" 
+            },
+            {
+                year: "1971",
+                title: "First Microprocessor",
+                description: "Intel debuts the 4004, the world's first commercial microprocessor, igniting the microprocessor revolution and propelling the future of computing devices.",
+                image: "img/2.jpg" // Reemplaza con la ruta de tu imagen
+            },
+            {
+                year: "1978",
+                title: "8086 Processor",
+                description: "Launch of the 8086 processor, establishing the x86 architecture that drives countless PCs and servers in the modern era.",
+                image: "img/3.jpg" // Reemplaza con la ruta de tu imagen
+            },
+            {
+                year: "1985",
+                title: "386 Processor",
+                description: "Intel introduces the 386 processor with 32-bit architecture, ushering in a new era of performance and multitasking for personal computers.",
+                image: "img/4.jpg" // Reemplaza con la ruta de tu imagen
+            },
+            {
+                year: "2006",
+                title: "Peak GHG Emissions",
+                description: "This year marks Intel's highest annual greenhouse gas emissions for operations. Over subsequent years, Intel invests heavily in chemical abatement, renewable energy, and energy-efficient manufacturing to reverse this trend.",
+                image: "img/5.png" // Reemplaza con la ruta de tu imagen
+            },
+            {
+                year: "2020",
+                title: "RISE Strategy",
+                description: "Intel launches its RISE (Responsible, Inclusive, Sustainable, Enabling) strategy and 2030 goals, aiming to drive industry-wide progress on climate action, water stewardship, and waste reduction.",
+                image: "img/6.jpg" // Reemplaza con la ruta de tu imagen
+            },
+            {
+                year: "2022",
+                title: "Net-Zero By 2040",
+                description: "Intel announces its commitment to achieve net-zero greenhouse gas emissions (Scope 1 and 2) across its global operations by 2040, building on years of environmental initiatives.",
+                image: "img/7.jpg" // Reemplaza con la ruta de tu imagen
+            },
+            {
+                year: "2023",
+                title: "Renewable Electricity",
+                description: "The company achieves 99% renewable electricity usage worldwide, helping to drastically lower carbon emissions and driving progress toward Intel's long-term sustainability goals.",
+                image: "img/8.avif" // Reemplaza con la ruta de tu imagen
+            },
+            {
+                year: "2024",
+                title: "Sustainability Summit",
+                description: "Intel hosts its first Sustainability Summit, uniting suppliers, government officials, and industry leaders to collaborate on next-generation sustainable semiconductor manufacturing.",
+                image: "img/9.jpeg" // Reemplaza con la ruta de tu imagen
+            },
+        ];
+
+        let currentIndex = 0;
+        const carousel = document.querySelector(".carousel");
+        const prevBtn = document.getElementById("prevBtn");
+        const nextBtn = document.getElementById("nextBtn");
+
+        // Función para generar las tarjetas dinámicamente
+        function createCards() {
+            carousel.innerHTML = "";
+            timelineData.forEach((item, index) => {
+                const card = document.createElement("div");
+                card.classList.add("card");
+                if (index === currentIndex) {
+                    card.classList.add("active");
+                }
+                card.innerHTML = `
+                    <h2>${item.year}</h2>
+                    <h3>${item.title}</h3>
+                    <img src="${item.image}" alt="${item.title}">
+                    <p>${item.description}</p>
+                `;
+                carousel.appendChild(card);
+            });
+        }
+
+        // Función para mostrar la tarjeta actual
+        function showCurrentCard() {
+            const cards = document.querySelectorAll(".card");
+            cards.forEach((card, index) => {
+                card.classList.remove("active");
+                if (index === currentIndex) {
+                    card.classList.add("active");
+                }
+            });
+        }
+
+        // Evento para el botón de Siguiente
+        nextBtn.addEventListener("click", () => {
+            currentIndex = (currentIndex + 1) % timelineData.length;
+            showCurrentCard();
+        });
+
+        // Evento para el botón de Anterior
+        prevBtn.addEventListener("click", () => {
+            currentIndex = (currentIndex - 1 + timelineData.length) % timelineData.length;
+            showCurrentCard();
+        });
+
+        // Llama a la función para crear y mostrar las tarjetas al cargar la página
+        createCards();
+    </script>
+</body>
+</html>

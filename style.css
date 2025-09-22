@@ -1,0 +1,136 @@
+ody {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    text-align: center;
+    padding: 2rem 1rem;
+    background-color: #0071c5;
+    color: white;
+}
+
+header img {
+    height: 50px; /* Ajusta el tamaño del logo */
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+p {
+    font-size: 1.1rem;
+}
+
+/* Estilos del carrusel */
+.carousel-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1rem;
+    position: relative; /* Para posicionar las flechas */
+    max-width: 1200px;
+    margin: auto;
+}
+
+.carousel {
+    display: flex;
+    overflow: hidden; /* Oculta los cards que no están activos */
+    width: 100%;
+    position: relative;
+    height: 550px; /* Altura fija para evitar saltos de diseño */
+    align-items: center;
+}
+
+.card {
+    min-width: 100%; /* Cada card ocupa el 100% del ancho del carrusel */
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.5s ease-in-out;
+    display: none; /* Inicialmente ocultos, JavaScript los mostrará */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card.active {
+    display: flex; /* Muestra solo el card activo */
+}
+
+.card h2 {
+    font-size: 2rem;
+    color: #0071c5;
+}
+
+.card h3 {
+    font-size: 1.5rem;
+    color: #555;
+    margin-top: 0;
+}
+
+.card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 1rem 0;
+    max-height: 250px; /* Limita el tamaño de las imágenes */
+}
+
+/* Estilos de los botones de navegación */
+.nav-btn {
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 1rem;
+    cursor: pointer;
+    font-size: 2rem;
+    z-index: 10;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute; /* Posicionamiento absoluto para que estén a los lados */
+    top: 50%;
+    transform: translateY(-50%);
+    user-select: none;
+    transition: background-color 0.3s ease;
+}
+
+#prevBtn {
+    left: 20px;
+}
+
+#nextBtn {
+    right: 20px;
+}
+
+.nav-btn:hover {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+@media (max-width: 768px) {
+    .nav-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+    }
+
+    #prevBtn {
+        left: 5px;
+    }
+    #nextBtn {
+        right: 5px;
+    }
+}
